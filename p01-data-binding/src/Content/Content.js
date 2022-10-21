@@ -42,7 +42,7 @@ function Content() {
       <button onClick={(e) => {
           e.preventDefault();
           setDp(!dp);
-        }}>Edit Text</button>;
+        }}>Edit Text</button>
         <h3>{inputPropsTitle.value}</h3>
         <p>
         {inputPropsDesc.value} 
