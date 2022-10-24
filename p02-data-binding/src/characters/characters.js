@@ -3,6 +3,7 @@ import charactersList, { filterByHouse, getAllHouses } from './charactersList'
 import "./characters.style.css";
 
 const initialHousesState = getAllHouses();
+let houseName = "All",characters=charactersList,myListHouses;
 
 function Characters() {
 
@@ -16,23 +17,33 @@ function Characters() {
     setHouses(state => state.map(item => 
       (item.name !== houseName) ? item : {...item, active: !item.active }
     ))
+
+  
   }
 
   const handleClick = (e) => {
-    const houseName = e.target.name
+    houseName = e.target.name
 
     setHouses(initialHousesState);
 
     if (houseName === "All") {
-      // dislay all chanracters
-      return;
+      // dislay all characters
+      const myArray =charactersList;
+
+      characters=charactersList;
+
+      myListHouses = myArray.map((item) => <p>{item}</p>)
+   
+      return myListHouses;
+      
     }
 
     toggleHouseActive(houseName)
 
     // display all characters of active house
-    const characters = filterByHouse(houseName)
-    console.log(characters)
+    characters = filterByHouse(houseName);
+  //  console.log(characters)
+   
   }
 
   return (
@@ -42,7 +53,7 @@ function Characters() {
         <div className="houses">
           {houses?.map((house) => (
             <button 
-              key={house.name}
+              key={house.key}
               name={house.name} 
               className={house.active ? "active" : ""}
               onClick={handleClick}
@@ -51,11 +62,19 @@ function Characters() {
             </button>)
           )}
         </div>
-      </div>
-      <div className="characters">
 
+        <div>
+        <h2>{houseName}</h2>        
+        {characters?.map((character) => (
+      <>       
+      <h4>{character.fullName}</h4>
+      <img key={character.key} src={character.imageUrl} alt="" /></>
+      )
+        )}
+        </div>
       </div>
     </div>
+
   )
 }
 
