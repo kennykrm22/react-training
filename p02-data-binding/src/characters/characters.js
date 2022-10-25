@@ -30,8 +30,7 @@ function Characters() {
       // dislay all characters
       const myArray =charactersList;
 
-      characters=charactersList;
-
+      characters=charactersList
       myListHouses = myArray.map((item) => <p>{item}</p>)
    
       return myListHouses;
@@ -53,7 +52,7 @@ function Characters() {
         <div className="houses">
           {houses?.map((house) => (
             <button 
-              key={house.key}
+              key={house.name}
               name={house.name} 
               className={house.active ? "active" : ""}
               onClick={handleClick}
@@ -63,18 +62,17 @@ function Characters() {
           )}
         </div>
 
-        <div>
+
         <h2>{houseName}</h2>        
         {characters?.map((character) => (
-      <>       
+      <div key={character.id}>       
       <h4>{character.fullName}</h4>
-      <img key={character.key} src={character.imageUrl} alt="" /></>
+      <img  src={character.imageUrl} alt="" />
+      </div>
       )
         )}
         </div>
-      </div>
     </div>
-
   )
 }
 
