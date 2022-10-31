@@ -1,11 +1,11 @@
 import React from 'react'
 import "./Input.styles.css";
 
-const Input = ({ label, ...props }) => {
+const Input = ({ label, ChangeValue, ...props }) => {
   return (
     <div className="form-input">
       <label htmlFor={props.name}>{label}</label>
-      <input id={props.name} {...props} />
+      <input id={props.name} name={props.name} onChange={ChangeValue} {...props}/>
     </div>
   )
 }

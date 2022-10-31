@@ -1,13 +1,21 @@
-import React from "react";
-import logo from "../Shared/svg/logo.svg";
-import { Button } from "../Shared/components";
+import React, {useState} from "react";
+import { Button, Logo } from "../Shared/components";
+
+
+
 
 const Header = ({ title }) => {
+  const [logoMovingAndText, setLogoMovingAndText] = useState(true);
+
+  const onClickButton=() => {
+    setLogoMovingAndText(!logoMovingAndText);
+  }
+
   return (
     <header className="App-header">
-      <img src={logo} className="App-logo logo-animation" alt="logo" />
-      <h3>{title}</h3>
-      <Button title="Animation on" />
+      <Logo setAnimate={logoMovingAndText}/>
+      {logoMovingAndText && <h3>{title}</h3>}
+      <Button type="Button" title="Animation on"  onClickButton={onClickButton} />
     </header>
   );
 };
